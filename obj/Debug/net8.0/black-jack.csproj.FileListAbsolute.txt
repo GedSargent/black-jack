@@ -1,0 +1,14 @@
+/Users/gs/Sites/dot-net/black-jack/bin/Debug/net8.0/black-jack
+/Users/gs/Sites/dot-net/black-jack/bin/Debug/net8.0/black-jack.deps.json
+/Users/gs/Sites/dot-net/black-jack/bin/Debug/net8.0/black-jack.runtimeconfig.json
+/Users/gs/Sites/dot-net/black-jack/bin/Debug/net8.0/black-jack.dll
+/Users/gs/Sites/dot-net/black-jack/bin/Debug/net8.0/black-jack.pdb
+/Users/gs/Sites/dot-net/black-jack/obj/Debug/net8.0/black-jack.GeneratedMSBuildEditorConfig.editorconfig
+/Users/gs/Sites/dot-net/black-jack/obj/Debug/net8.0/black-jack.AssemblyInfoInputs.cache
+/Users/gs/Sites/dot-net/black-jack/obj/Debug/net8.0/black-jack.AssemblyInfo.cs
+/Users/gs/Sites/dot-net/black-jack/obj/Debug/net8.0/black-jack.csproj.CoreCompileInputs.cache
+/Users/gs/Sites/dot-net/black-jack/obj/Debug/net8.0/black-jack.dll
+/Users/gs/Sites/dot-net/black-jack/obj/Debug/net8.0/refint/black-jack.dll
+/Users/gs/Sites/dot-net/black-jack/obj/Debug/net8.0/black-jack.pdb
+/Users/gs/Sites/dot-net/black-jack/obj/Debug/net8.0/black-jack.genruntimeconfig.cache
+/Users/gs/Sites/dot-net/black-jack/obj/Debug/net8.0/ref/black-jack.dll
