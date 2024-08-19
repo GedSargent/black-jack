@@ -4,6 +4,12 @@ namespace CardGame
   {
     public string Name { get; set; }
     public List<Card> Hand;
+    public bool isCurrentlyPlaying = true;
+    public bool hasWon = false;
+    public bool hasLost = false;
+    public bool isBust = false;
+    public bool hasBlackjack = false;
+    public bool hasRoyalBlackjack = false;
 
     public Player(string name)
     {
@@ -29,7 +35,7 @@ namespace CardGame
 
       foreach (var card in Hand)
       {
-        score += card.GetScore();
+        score += (int)card.GetScore();
         if (card.Value == Value.Ace)
         {
           aces++;
@@ -71,19 +77,23 @@ namespace CardGame
     }
 
     // Calculate if player has blackjack with only two cards
-    public bool IsBlackjack()
+    public void CheckForBlackjack()
     {
-      return CalculateScore() == 21 && Hand.Count == 2;
+      bool result = CalculateScore() == 21 && Hand.Count == 2;
+
+      hasBlackjack = result;
     }
-    public bool IsRoyalBlackjack()
+    public void CheckForRoyalBlackjack()
     {
       bool hasAce = Hand.Any(c => c.Value == Value.Ace);
       bool hasRoyal = Hand.Any(c => c.Value == Value.King || c.Value == Value.Queen || c.Value == Value.Jack);
 
-      return Hand.Count == 2 && hasAce && hasRoyal;
+      bool result = Hand.Count == 2 && hasAce && hasRoyal;
+
+      hasRoyalBlackjack = result;
     }
 
-    public bool IsFiveCardTrick()
+    public bool HasFiveCardTrick()
     {
       return Hand.Count == 5 && CalculateScore() <= 21;
     }

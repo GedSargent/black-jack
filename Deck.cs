@@ -5,6 +5,12 @@ namespace CardGame
     private List<Card> cards;
     public Deck()
     {
+        cards = CreateDeck();
+    }
+    public List<Card> Cards => cards; // Public property to expose the cards field
+
+    public List<Card> CreateDeck()
+    {
         cards = new List<Card>();
         for (int i = 0; i < 4; i++)
         {
@@ -13,8 +19,9 @@ namespace CardGame
                 cards.Add(new Card((Suit)i, (Value)j));
             }
         }
+
+        return cards;
     }
-    public List<Card> Cards => cards; // Public property to expose the cards field
 
     public void Shuffle()
     {
