@@ -63,6 +63,7 @@ namespace CardGame
       else if (choice == "s")
       {
         Console.WriteLine(player.Name + " sticks.");
+        Console.WriteLine("--------------------------");
         player.isCurrentlyPlaying = false;
 
         CheckGameStatus(player, deck, opponent);
@@ -74,7 +75,6 @@ namespace CardGame
     public void CheckGameStatus(Player player, Deck deck, Player opponent) {
       if (IsBust(player))
       {
-        Console.WriteLine(player.Name + " is bust!");
         isOver = true;
         player.hasLost = true;
         opponent.hasWon = true;

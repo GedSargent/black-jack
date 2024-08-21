@@ -16,14 +16,16 @@ class Program
     // Exit the game
     Environment.Exit(0);
 
+    // ------------------------------------------------------------
+
     void PlayGame() {
       (Game game, Deck deck, Player player, Player opponent) SetupNewGame() {
         var game = new Game();
         var deck = new Deck();
         deck.Shuffle();
 
-        var player = new Player("Ged");
-        var opponent = new Player("Computer");
+        var player = new Player("Player 1");
+        var opponent = new Player("Player 2");
 
         return (game, deck, player, opponent);
       }
@@ -31,6 +33,10 @@ class Program
       var (game, deck, player, opponent) = SetupNewGame();
 
       // Deal cards to player and computer
+      Console.WriteLine("--------------------");
+      Console.WriteLine("Welcome to Blackjack!");
+      Console.WriteLine("Dealing cards...");
+      Console.WriteLine("");
       game.DealCards(player, deck, game);
       game.DealCards(opponent, deck, game);
       game.CheckForEarlyWin(player, game);
@@ -48,10 +54,6 @@ class Program
         opponent.hasWon = true;
         opponent.isCurrentlyPlaying = false;
         game.isOver = true;
-        Console.WriteLine(opponent.Name + " has won!");
-
-        // Ask player if they want to play again. If they do, reset the game
-
       }
 
       // Computer's turn
