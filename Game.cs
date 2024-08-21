@@ -41,7 +41,7 @@ namespace CardGame
     }
 
     // Ask player if they want to twist or stick
-    public void PlayerTurn(Player player, Deck deck) {
+    public void TakeTurn(Player player, Deck deck, Player opponent) {
       Console.WriteLine(player.Name + ", do you want to twist or stick? (t/s)");
       string? choice = Console.ReadLine();
 
@@ -58,21 +58,26 @@ namespace CardGame
         player.DisplayHand();
         player.DisplayScore();
 
-        CheckPlayerStatus(player, deck);
+        CheckGameStatus(player, deck, opponent);
       }
       else if (choice == "s")
       {
         Console.WriteLine(player.Name + " sticks.");
         player.isCurrentlyPlaying = false;
+
+        CheckGameStatus(player, deck, opponent);
+
+        return;
       }
     }
 
-    public void CheckPlayerStatus(Player player, Deck deck) {
+    public void CheckGameStatus(Player player, Deck deck, Player opponent) {
       if (IsBust(player))
       {
         Console.WriteLine(player.Name + " is bust!");
         isOver = true;
         player.hasLost = true;
+        opponent.hasWon = true;
         player.isCurrentlyPlaying = false;
 
         return;
@@ -83,22 +88,59 @@ namespace CardGame
         Console.WriteLine(player.Name + " has a five card trick!");
       }
 
-      PlayerTurn(player, deck);
+      if (player.isCurrentlyPlaying)
+      {
+        TakeTurn(player, deck, opponent);
+      }
     }
 
-    public void ResetGame(Player player, Player computer, Deck deck, Game game) {
-      player.Hand.Clear();
-      computer.Hand.Clear();
-      deck.Shuffle();
-      game.isOver = false;
-      player.isCurrentlyPlaying = true;
-      computer.isCurrentlyPlaying = true;
-      player.hasWon = false;
-      computer.hasWon = false;
-      player.hasLost = false;
-      computer.hasLost = false;
-      player.isBust = false;
-      computer.isBust = false;
+    public void CheckFinalWinner(Player player, Player opponent) {
+      if (IsBust(player)) {
+        player.hasLost = true;
+        opponent.hasWon = true;
+        Console.WriteLine(player.Name + " is bust!");
+        Console.WriteLine(opponent.Name + " has won!");
+        isOver = true;
+
+        return;
+      };
+
+      if (IsBust(opponent)) {
+        opponent.hasLost = true;
+        player.hasWon = true;
+        Console.WriteLine(opponent.Name + " is bust!");
+        Console.WriteLine(player.Name + " has won!");
+        isOver = true;
+
+        return;
+      };
+
+      bool isPlayerWinner = player.hasWon = GetPlayerScore(player) > GetPlayerScore(opponent);
+      bool isDraw = GetPlayerScore(player) == GetPlayerScore(opponent);
+
+      if (isDraw)
+      {
+        Console.WriteLine("It's a draw!");
+        player.hasWon = true;
+        opponent.hasWon = true;
+        isOver = true;
+      }
+      else
+
+      if (isPlayerWinner)
+      {
+        player.hasWon = true;
+        opponent.hasLost = true;
+        Console.WriteLine(player.Name + " wins!");
+        isOver = true;
+      }
+      else
+      {
+        opponent.hasWon = true;
+        player.hasLost = true;
+        Console.WriteLine(opponent.Name + " wins!");
+        isOver = true;
+      }
     }
   }
 }

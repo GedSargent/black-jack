@@ -8,6 +8,7 @@ namespace CardGame
     public bool hasWon = false;
     public bool hasLost = false;
     public bool isBust = false;
+    public bool isComputer = false;
     public bool hasBlackjack = false;
     public bool hasRoyalBlackjack = false;
 
@@ -15,6 +16,11 @@ namespace CardGame
     {
       Name = name ?? throw new ArgumentNullException(nameof(name));
       Hand = new List<Card>() ?? throw new ArgumentNullException(nameof(Hand));
+
+      if (name == ReservedNames.Computer.ToString())
+      {
+        isComputer = true;
+      }
     }
 
     public void InitialDraw(Deck deck)
@@ -124,4 +130,9 @@ namespace CardGame
       Console.WriteLine(Name + "'s new score: " + score);
     }
   }
+}
+
+public enum ReservedNames
+{
+  Computer
 }
