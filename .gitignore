@@ -1,0 +1,14 @@
+# Ignore compiled C# files
+*.dll
+*.exe
+*.pdb
+
+# Ignore NuGet package directories
+**/bin/
+**/obj/
+
+# Ignore Visual Studio files
+.vs/
+*.suo
+*.user
+*.sln.docstates
